@@ -2,7 +2,7 @@
 name: TreinaZap - Deploy PRD - to S3
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
   
 jobs:
   build:
@@ -11,6 +11,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
-      - run: ls -la
-      - run: pwd
+          node-version: 12.21.0
+      - name: INSTALL AND BUILD
+        run: node --version
