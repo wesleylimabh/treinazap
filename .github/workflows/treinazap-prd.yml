@@ -19,8 +19,8 @@ jobs:
         env:
             CI: "false"
       - name: LISTAR ARQUIVOS
-        run: cd build && AWS_ACCESS_KEY_ID=${CHAVE} AWS_SECRET_ACCESS_KEY=${SENHA} aws s3 sync . s3://treinazap-wesley --acl public-read --delete
+        run: cd build && AWS_ACCESS_KEY_ID=${ACCESS_KEY} AWS_SECRET_ACCESS_KEY=${SECRET_KEY} aws s3 sync . s3://treinazap-wesley --acl public-read --delete
         env:
-           CHAVE: ${{ secrets.ACCESS_KEY }}
-           SENHA: ${{ secrets.SECRET_KEY }}
+           ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+           SECRET_KEY: ${{ secrets.SECRET_KEY }}
         
