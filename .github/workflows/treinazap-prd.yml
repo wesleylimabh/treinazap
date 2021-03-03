@@ -1,13 +1,9 @@
 
-
-
-
 name: TreinaZap - Deploy PRD - to S3
 
 on:
-  push:
-    branches:
-    - master
+  workflow_dispatch
+  
 jobs:
   build:
     runs-on: ubuntu-latest
