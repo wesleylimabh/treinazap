@@ -13,4 +13,6 @@ jobs:
         with:
           node-version: 12.21.0
       - name: INSTALL AND BUILD
-        run: node --version
+        run: node install && npm run build
+      - name: Listar arquivos
+        run: ls -la build/*
