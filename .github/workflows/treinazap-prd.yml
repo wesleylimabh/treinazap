@@ -9,6 +9,11 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
+      - uses: dopplerhq/cli-action@v1
+      - name: SET ENVS AGENT GITHUB ACTIONS
+        run: doppler secrets download --no-file --format=docker >> $GITHUB_ENV;
+        env:
+            DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN_PRD }}
       - uses: actions/setup-node@v1
         with:
           node-version: 12.21.0
@@ -18,8 +23,4 @@ jobs:
             CI: "false"
       - name: DEPLOY S3
         run: cd build && AWS_ACCESS_KEY_ID=${ACCESS_KEY} AWS_SECRET_ACCESS_KEY=${SECRET_KEY} aws s3 sync . {BUCKET_S3} --acl public-read --delete
-        env:
-           ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
-           SECRET_KEY: ${{ secrets.SECRET_KEY }}
-           BUCKET_S3: ${{ secrets.BUCKET_S3 }}
         
