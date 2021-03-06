@@ -17,6 +17,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12.21.0
+      - name: SET ENV FIREBASE
+        run: envsubst <src/firebase-deploy.js> src/firebase.js
+      - name: CHECK FILE
+        run: cat src/firebase.js
       - name: INSTALL AND BUILD
         run: npm install && npm run build
         env:
