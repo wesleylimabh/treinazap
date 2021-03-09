@@ -25,6 +25,10 @@ jobs:
         run: npm install && npm run build
         env:
             CI: "false"
+      - name: DOWNLOAD SONAR-SCANNER
+        run: wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.0.2311-linux.zip && unzip sonar-scanner-cli-4.6.0.2311-linux.zip
+      - name: ANALYSYS CODE
+        run: ./sonar-scanner-4.6.0.2311-linux/bin/sonar-scanner -Dsonar.projectKey=treinazap -Dsonar.sources=. -Dsonar.host.url=http://sonar.pitu.ga/ -Dsonar.login=5a0cbf20b7b75624b309f398f722ed4c409800f2
       - name: DEPLOY S3
         run: cd build && AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_KEY} aws s3 sync . ${AWS_BUCKET_S3} --acl public-read --delete
       - name: CLEAR CACHE
